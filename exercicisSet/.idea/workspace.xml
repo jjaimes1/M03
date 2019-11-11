@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ab356138-faf3-4705-b9fa-4be687652863" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/NauComparadorTipus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Pruebas/prueba1/prueba1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/examenParte1_Jhonny-Jaimes.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Naus.class" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Naus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Pantalla.class" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Pantalla.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Naus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Naus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Naus_Dades.java" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Naus_Dades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Pantalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Pantalla_parte1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercicisMap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../exercicisMap/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/CodeI" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/CodeI" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/java/com/dam/jj/pt12/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/java/com/dam/jj/pt12/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout-land/content_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout-land/content_principal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout-land/content_principal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/content_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/content_principal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/content_principal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/xml/prefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/xml/prefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT1_Jhonny-Jaimes-Huayta.zip" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1RkSf1u78cIY7E7RXIyjqNfimnq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../M06/pruebasAccesoFichero2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Exercici1">
+    <configuration name="Exercici1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici1" />
+      <module name="exercicisSet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exercici2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici2" />
+      <module name="exercicisSet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exercici3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici3" />
+      <module name="exercicisSet" />
+      <option name="PROGRAM_PARAMETERS" value="hola que hace hola" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exercici4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici4" />
+      <module name="exercicisSet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Main" />
+      <module name="exercicisSet" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Exercici1" />
+      <item itemvalue="Application.Exercici2" />
+      <item itemvalue="Application.Exercici3" />
+      <item itemvalue="Application.Exercici4" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Exercici1" />
+        <item itemvalue="Application.Exercici4" />
+        <item itemvalue="Application.Exercici3" />
+        <item itemvalue="Application.Exercici2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab356138-faf3-4705-b9fa-4be687652863" name="Default Changelist" comment="" />
+      <created>1570209700197</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570209700197</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

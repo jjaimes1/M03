@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1f33fed9-8b1b-4551-ad81-1f16a5f17ba6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Naus.class" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Naus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Pantalla.class" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/out/production/examenParte1JhonnyJaimes/com/jj/Pantalla.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Naus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Naus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Pantalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/../examenParte1JhonnyJaimes/src/com/jj/Pantalla.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/CodeI" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/CodeI" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/java/com/dam/jj/pt12/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/java/com/dam/jj/pt12/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout-land/content_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout-land/content_principal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout-land/content_principal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/content_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/content_principal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/layout/content_principal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/xml/prefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../M08/PT12/app/src/main/res/xml/prefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../M08/PT1_Jhonny-Jaimes-Huayta.zip" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1RyEtcoBDsvI8iQcTgDYGOvwVuU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="copyright.profiles" />
+    <property name="settings.editor.splitter.proportion" value="0.28103945" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Exercici3">
+    <configuration name="Exercici1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici1" />
+      <module name="exercicisMap" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exercici2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici2" />
+      <module name="exercicisMap" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exercici3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jj.Exercici3" />
+      <module name="exercicisMap" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SortedTreeMapDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maps_exemples.SortedTreeMapDemo" />
+      <module name="exercicisMap" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maps_exemples.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exercici1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MapsExercicis.exercici1" />
+      <module name="exercicisMap" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MapsExercicis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Exercici1" />
+      <item itemvalue="Application.SortedTreeMapDemo" />
+      <item itemvalue="Application.exercici1" />
+      <item itemvalue="Application.Exercici2" />
+      <item itemvalue="Application.Exercici3" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Exercici3" />
+        <item itemvalue="Application.Exercici1" />
+        <item itemvalue="Application.Exercici2" />
+        <item itemvalue="Application.exercici1" />
+        <item itemvalue="Application.SortedTreeMapDemo" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1f33fed9-8b1b-4551-ad81-1f16a5f17ba6" name="Default Changelist" comment="" />
+      <created>1570631150376</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570631150376</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+</project>
