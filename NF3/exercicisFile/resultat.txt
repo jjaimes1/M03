@@ -1,0 +1,7 @@
+caràcter: q repeticions: 11 percentatge: 20% 
+caràcter: r repeticions: 10 percentatge: 18% 
+caràcter: t repeticions: 1 percentatge: 1% 
+caràcter: e repeticions: 11 percentatge: 20% 
+caràcter: w repeticions: 11 percentatge: 20% 
+caràcter: 
+ repeticions: 10 percentatge: 18% 

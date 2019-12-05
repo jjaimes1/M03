@@ -1,0 +1,9 @@
+pepinillos_ES_UN_DIRECTORI
+papagallo_ES_UN_DIRECTORI.txt
+patata.txt
+index.txt
+ostras_ES_UN_DIRECTORI.txt
+pepinillo.txt
+copiaDeTotsElsTxt.txt
+.papagallo_camuflat_ES_UN_DIRECTORI.txt
+moniato.txt
