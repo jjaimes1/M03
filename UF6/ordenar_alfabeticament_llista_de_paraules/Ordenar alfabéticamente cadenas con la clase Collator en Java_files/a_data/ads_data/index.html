@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adunit built by Studio</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    
+    <style>
+      body, body * {
+        vertical-align: baseline;
+        border: 0 none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+      }
+      #game {
+        position: absolute;
+        width: 728px;
+        height: 90px;
+      }
+    </style>
+    <script>
+      
+      var clickTag = "https://www.adludio.com"
+      
+      
+    </script>
+  <script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script></head>
+  <body>
+    <div id="game"><canvas width="728" height="90" style="width: 728px; height: 90px;"></canvas></div>
+    <script type="text/javascript" src="index_data/game.js"></script>
+    <!-- //THE GAME.JS WILL RETURN A PlayUnlock object on the window -->
+    <script language="javascript">
+      var node = document.getElementById('game');
+      PlayUnlock.create(node, node.clientWidth, node.clientHeight);
+      PlayUnlock.attach('onClickThrough',function(data){
+        
+        
+        window.mraid ? mraid.open(clickTag, "_blank") : window.open(clickTag, "_blank");
+      });
+    </script>
+  
+
+</body></html>

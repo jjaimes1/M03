@@ -1,0 +1,12 @@
+INSTALAR EL PLUGIN EN NetBeans:
+
+Tools/Plugins --> Downloaded --> btn Add Plugins --> filtro = *.jar i a llavors trobar el fitxer "db4o-8.0.184.15484-all-java5.jar" --> btn Install --> Disable Modules and Continue
+
+
+
+
+---------------------------
+
+QUE EL NOSTRE PROJECTE VEGI EL PLUGIN DE db4o:
+
+Quan creem el projecte, ens posem sobre "Source Packages", fem click btn dret --> properties --> libraries --> btn Add JAR/Folder --> sel·leccionem el fitxer "db4o-8.0.184.15484-all-java5.jar" i d'aquesta manera al fer un "import com.db4o.*;" ja va bé.

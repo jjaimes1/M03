@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="pico.dev">
+  <meta name="keywords" content="java, programacion, tapestry, linux, gnu, gnu/linux, arch, arch linux, software, software libre, html, css, javascript">
+  <meta name="description" content="Quizá algunos digan que la aparentemente sencilla tarea de ordenar una lista de palabras es algo fácil de hacer con cualquier lenguaje de programación. La realidad es que puede complicarse en una buena cantidad si se ha de realizar con los caracteres del alfabeto de algunos lenguajes. La ordenación no es tan simple como realizar lo siguiente en código Java:
+ Primeramente nos daremos cuenta de que la siguiente lista de nombres de provincias las ordena de una forma que quizá no es la que esperamos. …">
+  <!-- base href="https://picodotdev.github.io/blog-bitix/" -->
+
+  <title>Ordenar alfabéticamente cadenas con la clase Collator en Java</title>
+
+  <link rel="author" type="text/plain" href="https://picodotdev.github.io/blog-bitix/humans.txt">
+  <link rel="shortcut icon" href="https://picodotdev.github.io/blog-bitix/assets/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://picodotdev.github.io/blog-bitix/assets/apple-touch-icon-144-precomposed.png">
+  <link rel="canonical" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a_007.html">
+
+  
+  <link href="https://picodotdev.github.io/blog-bitix/index.xml" rel="alternate" type="application/rss+xml" title="Blog Bitix">
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/css.css">
+  
+  <link rel="stylesheet" type="text/css" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/bootstrap.css">
+  
+  <link rel="stylesheet" type="text/css" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/blueimp-gallery.css">
+  
+  <link rel="stylesheet" type="text/css" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/main.css">
+
+  
+  <script async="" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a.json"></script><script async="" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/get_counts.json"></script><script async="" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/5920c4ce1bd0670011e06acd.js"></script><script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/ca-pub-3533636310991304.js"></script><script async="" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/analytics.js"></script><script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/adsbygoogle.js" async=""></script>
+  <script type="text/javascript">
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: 'ca-pub-3533636310991304',
+      enable_page_level_ads: true
+    });
+  </script><link rel="preload" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/integrator.js"><script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/integrator.js"></script><link rel="preload" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/integrator_002.js"><script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/integrator_002.js"></script>
+  <script type="text/javascript" async="">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-12874075-4', 'picodotdev.github.io');
+    ga('send', 'pageview');
+  </script>  
+  <script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/vendor.js"></script>
+  <script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/app-theme.js" async=""></script>
+  <script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/app.js" async=""></script>
+
+  <script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/sharethis.js" async=""></script>
+
+  
+  
+<script type="text/javascript" async="" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/embed.js"></script><link rel="prefetch" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a_data_003/lounge.css"><link rel="prefetch" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a_data_003/common.js"><link rel="prefetch" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a_data_003/lounge_002.js"><link rel="prefetch" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a_data_003/config.js"><style type="text/css">#st-1 {
+  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;;
+  direction: ltr;
+  display: block;
+  opacity: 1;
+  text-align: center;
+  z-index: 94034;
+}
+#st-1.st-animated {
+  -moz-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; -ms-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; -o-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; -webkit-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+}
+#st-1.st-hidden {
+  opacity: 0;
+}
+#st-1 .st-btn {
+  -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+  -moz-transition: opacity 0.2s ease-in, top 0.2s ease-in; -ms-transition: opacity 0.2s ease-in, top 0.2s ease-in; -o-transition: opacity 0.2s ease-in, top 0.2s ease-in; -webkit-transition: opacity 0.2s ease-in, top 0.2s ease-in; transition: opacity 0.2s ease-in, top 0.2s ease-in;
+  -moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+border-radius: 0px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 8px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+#st-1 .st-btn:last-child {
+  margin-right: 0;
+}
+#st-1 .st-btn > svg {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  top: 10px;
+  vertical-align: top;
+}
+#st-1 .st-btn > img {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  top: 10px;
+  vertical-align: top;
+}
+#st-1 .st-btn > span {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  min-width: 67px;
+  opacity: 1;
+  padding: 0 6px;
+  position: relative;
+  vertical-align: top;
+}
+#st-1.st-has-labels .st-btn {
+  min-width: 135px;
+}
+#st-1.st-has-labels .st-btn.st-remove-label {
+  min-width: 50px;
+}
+#st-1.st-has-labels .st-btn.st-remove-label > span {
+  display: none;
+}
+#st-1.st-has-labels .st-btn.st-hide-label > span {
+  display: none;
+}
+#st-1 .st-total {
+  color: #555;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 15px;
+  margin-right: 0;
+  max-width: 80px;
+  padding: 4px 8px;
+  text-align: center;
+}
+#st-1 .st-total.st-hidden {
+  display: none;
+}
+#st-1 .st-total > span {
+  font-size: 20px;
+  line-height: 22px;
+  display: block;
+  padding: 0;
+}
+#st-1 .st-total > span.st-shares {
+  font-size: 12px;
+  line-height: 12px;
+}
+#st-1.st-justified {
+  display: flex;
+  text-align: center;
+}
+#st-1.st-justified .st-btn {
+  -moz-flex: 1;
+-ms-flex: 1;
+-webkit-flex: 1;
+flex: 1;
+}#st-1 .st-btn:hover {
+  opacity: .8;
+  top: -4px;
+}#st-1 .st-btn[data-network='twitter'] {
+  background-color: #55acee;
+}
+#st-1 .st-btn[data-network='facebook'] {
+  background-color: #3B5998;
+}
+#st-1 .st-btn[data-network='googleplus'] {
+  background-color: #dc4e41;
+}
+#st-1 .st-btn[data-network='linkedin'] {
+  background-color: #0077b5;
+}
+#st-1 .st-btn[data-network='sharethis'] {
+  background-color: #95D03A;
+}</style><script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/alfalfa.js" async="" charset="UTF-8"></script><link rel="stylesheet" type="text/css" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/dark-bottom.css"></head>
+
+<body style="background-image: url(&quot;assets/images/backgrounds/tiny_grid.png&quot;);"><div class="cc_banner-wrapper "><div class="cc_banner cc_container cc_container--open"><a href="#null" data-cc-event="click:dismiss" target="_blank" class="cc_btn cc_btn_accept_all">Aceptar</a><p class="cc_message">Esta
+ bitácora te informa de la obviedad de que utiliza «cookies», propias y 
+de servicios como Google Analytics y Google AdSense entre otros. </p><a class="cc_logo" target="_blank" href="http://silktide.com/cookieconsent">Cookie Consent plugin for the EU cookie law</a></div></div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <header>
+  <div class="row">
+    <div class="col-sm-12 col-md-4"></div>
+    <div class="col-sm-12 col-md-4">
+      <h2 class="title"><a href="https://picodotdev.github.io/blog-bitix/">Blog Bitix</a></h2>
+      <div class="links">
+        
+          <a href="https://picodotdev.github.io/blog-bitix/index.xml" title="¡Suscríbete a Blog Bitix!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/rss.png" class="icon"></a>
+        
+        
+          <a href="https://twitter.com/picodotdev/" title="¡Sígueme en twitter!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/twitter.svg" class="icon"></a>
+        
+        
+          <a href="https://plus.google.com/114317443908384387611/" title="¡Sigue a Blog Bitix en Google+!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/google-plus.svg" class="icon"></a>
+        
+        
+          <a href="https://github.com/picodotdev/blog-ejemplos/" title="¡Obtén el código fuente de los ejemplos!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/github.svg" class="icon"></a>
+        
+        
+        
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 text-center">
+      <form name="query" class="form-inline search" onsubmit="return false;">
+        <div class="input-group">
+          <input name="q" class="form-control" placeholder="Buscar en Blog Bitix" type="text">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit">Buscar</button>
+          </span>
+        </div>
+      </form>
+      <form name="search" action="https://duckduckgo.com/" method="get" class="hidden" data-site="https://picodotdev.github.io/blog-bitix/">
+        <input name="q" value="" type="hidden">
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <nav class="nav nav-pills nav-fill">
+  
+    <a href="https://picodotdev.github.io/blog-bitix/tags/java/" class="nav-item nav-link">Java</a>
+  
+    <a href="https://picodotdev.github.io/blog-bitix/tags/gnu-linux/" class="nav-item nav-link">GNU/Linux</a>
+  
+    <a href="https://picodotdev.github.io/blog-bitix/tags/javascript/" class="nav-item nav-link">JavaScript</a>
+  
+    <a href="https://picodotdev.github.io/blog-bitix/tags/tapestry/" class="nav-item nav-link">Tapestry</a>
+  
+    <a href="https://picodotdev.github.io/blog-bitix/archive/" class="nav-item nav-link">Archivo y hemeroteca</a>
+  
+    <a href="https://picodotdev.github.io/blog-bitix/pages/links/" class="nav-item nav-link">Enlaces</a>
+  
+    <a href="https://picodotdev.github.io/blog-bitix/pages/about/" class="nav-item nav-link">Acerca de...</a>
+  
+</nav>
+
+    </div>
+  </div>
+</header>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <div class="row">
+          <div class="col-md-12">
+            <article itemscope="" itemtype="http://schema.org/BlogPosting">
+              
+              <meta itemprop="inLanguage" content="es">
+              
+              
+                <meta itemprop="keywords" content="blog-stack, java, planeta-codigo, programacion">
+              
+              
+              <h1 itemprop="name">Ordenar alfabéticamente cadenas con la clase Collator en Java</h1>
+              <p class="information">
+                Publicado por <span itemscope="" itemtype="http://schema.org/Person"><span itemprop="name">pico.dev</span></span> el <time itemprop="datePublished" datetime="2017-11-04">04/11/2017</time>.
+                
+                  <br>
+                   <a href="https://picodotdev.github.io/blog-bitix/tags/blog-stack/">blog-stack</a> <a href="https://picodotdev.github.io/blog-bitix/tags/java/">java</a> <a href="https://picodotdev.github.io/blog-bitix/tags/planeta-codigo/">planeta-codigo</a> <a href="https://picodotdev.github.io/blog-bitix/tags/programacion/">programacion</a>
+                
+                <br>
+                <a href="https://picodotdev.github.io/blog-bitix/2017/11/ordenar-alfabeticamente-cadenas-con-la-clase-collator-en-java/" itemprop="url">Enlace permanente</a>
+                
+                  <a href="https://picodotdev.github.io/blog-bitix/2017/11/ordenar-alfabeticamente-cadenas-con-la-clase-collator-en-java/#comments">Comentarios</a>
+                
+                
+              </p>
+
+              
+                <p class="summary" itemprop="about">Sin usar la clase <em>Collator</em>
+ incluida en el JDK al ordenar alfabéticamente una lista de palabras 
+obtendremos en algún caso un resultado que nos extrañará y seguramente 
+no sea lo que esperamos. La clase <em>String</em> implementa la interfaz Comprable pero esta ordenación es en base al valor del código <em>unicode</em> sin tener en cuenta los diferentes niveles de diferencias que se pueden usar según el <em>Locale</em> y la clase <em>Collator</em>.</p>
+              
+              
+
+              <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-3533636310991304" data-ad-slot="5966819782" data-type="leaderboard" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" width="728" height="90" frameborder="0"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+              <div class="content" itemprop="articleBody">
+                <meta itemprop="wordCount" content="462">
+                
+
+
+                <div class="logotypes" style="float: right;">
+    <img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/java.svg" class="right" alt="Java" title="Java" width="200">
+</div>
+
+<p>Quizá algunos digan que la aparentemente sencilla tarea de ordenar 
+una lista de palabras es algo fácil de hacer con cualquier lenguaje de 
+programación. La realidad es que puede complicarse en una buena cantidad
+ si se ha de realizar con los caracteres del alfabeto de algunos 
+lenguajes. La ordenación no es tan simple como realizar lo siguiente en 
+código Java:</p>
+
+<script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/8869db9cbeebe22feb98d1bdab87d386.js"></script><link rel="stylesheet" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/gist-embed-424076ff466a7e89030092a4f07250c1660426066d73c9d07.css"><div id="gist82712331" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-sort-java" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-java">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-sort-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-sort-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">String</span>[] cadenas <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">String</span>[] { <span class="pl-s"><span class="pl-pds">"</span>Cantabria<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Álava<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Alava<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>alava<span class="pl-pds">"</span></span> };</td>
+      </tr>
+      <tr>
+        <td id="file-sort-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-sort-java-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-smi">Arrays</span><span class="pl-k">.</span>sort(cadenas);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386/raw/c60bb0ee23aa17ad81da41eac52baaec65d229a8/Sort.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386#file-sort-java">Sort.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+<p>Primeramente nos daremos cuenta de que la siguiente lista de nombres 
+de provincias las ordena de una forma que quizá no es la que esperamos. 
+En algunas páginas web se puede observar este error en algunos elementos
+ de selección de opciones de nombres de paises, ciudades, provincias u 
+otro conjunto de elementos que suelen estar ordenados alfabéticamente 
+para facilitar el encontrar el elemento a seleccionar pero que si se da 
+el caso de que hay variación de palabras con tildes y sin ellas y 
+minúsculas y mayúsculas se presenta la ordenación incorrecta.</p>
+
+<script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/8869db9cbeebe22feb98d1bdab87d386_004.js"></script><link rel="stylesheet" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/gist-embed-424076ff466a7e89030092a4f07250c1660426066d73c9d07.css"><div id="gist82712331" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-sort-out" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-sort-out-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-sort-out-LC1" class="blob-code blob-code-inner js-file-line">Alava, Cantabria, alava, Álava</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386/raw/c60bb0ee23aa17ad81da41eac52baaec65d229a8/Sort.out" style="float:right">view raw</a>
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386#file-sort-out">Sort.out</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+<p>Como se observa las palabras con letras mayúsculas se ordenan antes 
+que las palabras con letras en minúscula independientemente de la letra 
+del alfabeto, seguramente esta no es la ordenación deseada. En algunos 
+lenguajes como el español algo similar ocurre con las palabras que 
+llevan tilde en alguna letra. Convertir las palabras a mayúsculas o 
+minúsculas o eliminar las tildes por los mismos sin tilde previamente a 
+hacer la ordenación además de no ser una buena solución no sirve para 
+otros lenguajes con diferentes formas de tilde y marcas en las letras.</p>
+
+<p>En Java la solución es utilizar la clase <a href="http://docs.oracle.com/javase/9/docs/api/java/text/Collator.html">Collator</a>, esta clase establece varios niveles en las que las letras se consideran diferentes. Por ejemplo, en español las letras <em>e</em> y <em>f</em> se consideran diferencias primarias (diferentes letras), <em>e</em> y <em>é</em> son diferencias secundarias (diferentes tildes) y <em>e</em> y <em>E</em> son diferencias terciarias (diferencias entre mayúsculas y minúsculas). Las diferencias entre caracteres dependen del <a href="https://docs.oracle.com/javase/9/docs/api/java/util/Locale.html">Locale</a> y un <em>Collator</em> se obtiene en base a él con el método estático <a href="https://docs.oracle.com/javase/9/docs/api/java/text/Collator.html#getInstance-java.util.Locale-">getInstance​(Locale)</a>. Con el método <a href="https://docs.oracle.com/javase/9/docs/api/java/text/Collator.html#setStrength-int-">setStrength(int)</a> se establece el nivel de diferencias deseadas.</p>
+
+<p>Usando la clase <em>Collator</em> y realizando la ordenación de la misma lista anterior el resultado es diferente y seguramente más apropiado. Como la clase <em>Collator</em> implementa la interfaz <em>Comparable</em> podemos usarla como el comparador aplicar en el método <a href="https://docs.oracle.com/javase/9/docs/api/java/util/Arrays.html#sort-T:A-java.util.Comparator-">Arrays.sort(T[], Comparator&lt;? super T&gt;)</a> o <a href="https://docs.oracle.com/javase/9/docs/api/java/util/List.html#sort-java.util.Comparator-">List.sort(Comparator&lt;? super E&gt;)</a>.</p>
+
+<script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/8869db9cbeebe22feb98d1bdab87d386_003.js"></script><link rel="stylesheet" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/gist-embed-424076ff466a7e89030092a4f07250c1660426066d73c9d07.css"><div id="gist82712331" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-main-java" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-java">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-main-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-main-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">io.github.picodotodev.blogbitix.javacollator</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-main-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-main-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.text.Collator</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-main-java-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.ArrayList</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-main-java-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.Arrays</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-main-java-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.List</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-main-java-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-smi">java.util.Locale</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-main-java-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-main-java-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Main</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-main-java-LC10" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-main-java-LC11" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@SuppressWarnings</span>(<span class="pl-s"><span class="pl-pds">"</span>unchecked<span class="pl-pds">"</span></span>)</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-main-java-LC12" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-main-java-LC13" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">List</span> cadenas <span class="pl-k">=</span> <span class="pl-smi">List</span><span class="pl-k">.</span>of(<span class="pl-s"><span class="pl-pds">"</span>Cantabria<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Álava<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Alava<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>alava<span class="pl-pds">"</span></span>);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-main-java-LC14" class="blob-code blob-code-inner js-file-line">        </td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-main-java-LC15" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">String</span>[] sortedNoCollator <span class="pl-k">=</span> (<span class="pl-k">String</span>[]) cadenas<span class="pl-k">.</span>toArray(<span class="pl-k">new</span> <span class="pl-smi">String</span>[<span class="pl-c1">0</span>]);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-main-java-LC16" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">List</span> sortedPrimaryCollator <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>(cadenas);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-main-java-LC17" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">List</span> sortedSecondaryCollator <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>(cadenas);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-main-java-LC18" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">List</span> sortedTertiaryCollator <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>(cadenas);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-main-java-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-main-java-LC20" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Collator</span> primaryCollator <span class="pl-k">=</span> <span class="pl-smi">Collator</span><span class="pl-k">.</span>getInstance(<span class="pl-k">new</span> <span class="pl-smi">Locale</span>(<span class="pl-s"><span class="pl-pds">"</span>es<span class="pl-pds">"</span></span>));</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-main-java-LC21" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Collator</span> secondaryCollator <span class="pl-k">=</span> <span class="pl-smi">Collator</span><span class="pl-k">.</span>getInstance(<span class="pl-k">new</span> <span class="pl-smi">Locale</span>(<span class="pl-s"><span class="pl-pds">"</span>es<span class="pl-pds">"</span></span>));</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-main-java-LC22" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Collator</span> tertiaryCollator <span class="pl-k">=</span> <span class="pl-smi">Collator</span><span class="pl-k">.</span>getInstance(<span class="pl-k">new</span> <span class="pl-smi">Locale</span>(<span class="pl-s"><span class="pl-pds">"</span>es<span class="pl-pds">"</span></span>));</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-main-java-LC23" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-main-java-LC24" class="blob-code blob-code-inner js-file-line">        primaryCollator<span class="pl-k">.</span>setStrength(<span class="pl-smi">Collator</span><span class="pl-c1"><span class="pl-k">.</span>PRIMARY</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-main-java-LC25" class="blob-code blob-code-inner js-file-line">        secondaryCollator<span class="pl-k">.</span>setStrength(<span class="pl-smi">Collator</span><span class="pl-c1"><span class="pl-k">.</span>SECONDARY</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-main-java-LC26" class="blob-code blob-code-inner js-file-line">        tertiaryCollator<span class="pl-k">.</span>setStrength(<span class="pl-smi">Collator</span><span class="pl-c1"><span class="pl-k">.</span>TERTIARY</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-main-java-LC27" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-main-java-LC28" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Arrays</span><span class="pl-k">.</span>sort(sortedNoCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-main-java-LC29" class="blob-code blob-code-inner js-file-line">        sortedPrimaryCollator<span class="pl-k">.</span>sort(primaryCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-main-java-LC30" class="blob-code blob-code-inner js-file-line">        sortedSecondaryCollator<span class="pl-k">.</span>sort(secondaryCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-main-java-LC31" class="blob-code blob-code-inner js-file-line">        sortedTertiaryCollator<span class="pl-k">.</span>sort(tertiaryCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-main-java-LC32" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-main-java-LC33" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>printf(<span class="pl-s"><span class="pl-pds">"</span>Lista cadenas:                             %s%n<span class="pl-pds">"</span></span>, cadenas);        </td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="file-main-java-LC34" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>printf(<span class="pl-s"><span class="pl-pds">"</span>Ordenación sin clase Collator:             %s%n<span class="pl-pds">"</span></span>, <span class="pl-smi">Arrays</span><span class="pl-k">.</span>asList(sortedNoCollator));        </td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="file-main-java-LC35" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>printf(<span class="pl-s"><span class="pl-pds">"</span>Ordenación con clase Collator (primary):   %s%n<span class="pl-pds">"</span></span>, sortedPrimaryCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="file-main-java-LC36" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>printf(<span class="pl-s"><span class="pl-pds">"</span>Ordenación con clase Collator (secondary): %s%n<span class="pl-pds">"</span></span>, sortedSecondaryCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="file-main-java-LC37" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>printf(<span class="pl-s"><span class="pl-pds">"</span>Ordenación con clase Collator (tertiary):  %s%n<span class="pl-pds">"</span></span>, sortedTertiaryCollator);</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="file-main-java-LC38" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-main-java-L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="file-main-java-LC39" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386/raw/c60bb0ee23aa17ad81da41eac52baaec65d229a8/Main.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386#file-main-java">Main.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<script src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/8869db9cbeebe22feb98d1bdab87d386_002.js"></script><link rel="stylesheet" href="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/gist-embed-424076ff466a7e89030092a4f07250c1660426066d73c9d07.css"><div id="gist82712331" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-system-out" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-system-out-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-system-out-LC1" class="blob-code blob-code-inner js-file-line">Lista cadenas:                             [Cantabria, Álava, Alava, alava]</td>
+      </tr>
+      <tr>
+        <td id="file-system-out-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-system-out-LC2" class="blob-code blob-code-inner js-file-line">Ordenación sin clase Collator:             [Alava, Cantabria, alava, Álava]</td>
+      </tr>
+      <tr>
+        <td id="file-system-out-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-system-out-LC3" class="blob-code blob-code-inner js-file-line">Ordenación con clase Collator (primary):   [Álava, Alava, alava, Cantabria]</td>
+      </tr>
+      <tr>
+        <td id="file-system-out-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-system-out-LC4" class="blob-code blob-code-inner js-file-line">Ordenación con clase Collator (secondary): [Alava, alava, Álava, Cantabria]</td>
+      </tr>
+      <tr>
+        <td id="file-system-out-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-system-out-LC5" class="blob-code blob-code-inner js-file-line">Ordenación con clase Collator (tertiary):  [alava, Alava, Álava, Cantabria]</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386/raw/c60bb0ee23aa17ad81da41eac52baaec65d229a8/System.out" style="float:right">view raw</a>
+        <a href="https://gist.github.com/picodotdev/8869db9cbeebe22feb98d1bdab87d386#file-system-out">System.out</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+
+<p>Utilizando el <em>Collator</em> con solo diferencias primarias <em>Cantabria</em> se ordena al final de la lista por tener las letras <em>a</em>, <em>A</em> y <em>Á</em> una diferencia primaria con <em>C</em>. Con diferencias secundarias las letras <em>A</em> y <em>a</em> se ordenan antes que <em>Á</em> por tener diferencias secundarias. Finalmente, con diferencias terciarias <em>a</em> se ordena antes que <em>A</em>.</p>
+
+<p>
+    El <a href="https://github.com/picodotdev/blog-ejemplos/tree/master/JavaCollator">código fuente completo del ejemplo</a> puedes descargarlo del repositorio de ejemplos de Blog Bitix alojado en <a href="https://github.com/">GitHub</a> y probarlo en tu equipo ejecutando el comando <code>./gradlew run</code>.
+</p>
+
+
+
+              </div>
+            </article>
+          </div>
+        </div>
+        
+
+        
+<div class="row">
+  <div class="col-md-12">
+    <div class="sharethis-inline-share-buttons st-inline-share-buttons  st-center st-has-labels st-animated" id="st-1"><div class="st-total st-hidden">
+  <span class="st-label"></span>
+  <span class="st-shares">
+    Shares
+  </span>
+</div><div class="st-btn st-first" data-network="twitter" style="display: inline-block;">
+  <svg fill="#fff" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40">
+  <g>
+    <path d="m31.5 11.7c1.3-0.8 2.2-2 2.7-3.4-1.4 0.7-2.7 1.2-4 1.4-1.1-1.2-2.6-1.9-4.4-1.9-1.7 0-3.2 0.6-4.4 1.8-1.2 1.2-1.8 2.7-1.8 4.4 0 0.5 0.1 0.9 0.2 1.3-5.1-0.1-9.4-2.3-12.7-6.4-0.6 1-0.9 2.1-0.9 3.1 0 2.2 1 3.9 2.8 5.2-1.1-0.1-2-0.4-2.8-0.8 0 1.5 0.5 2.8 1.4 4 0.9 1.1 2.1 1.8 3.5 2.1-0.5 0.1-1 0.2-1.6 0.2-0.5 0-0.9 0-1.1-0.1 0.4 1.2 1.1 2.3 2.1 3 1.1 0.8 2.3 1.2 3.6 1.3-2.2 1.7-4.7 2.6-7.6 2.6-0.7 0-1.2 0-1.5-0.1 2.8 1.9 6 2.8 9.5 2.8 3.5 0 6.7-0.9 9.4-2.7 2.8-1.8 4.8-4.1 6.1-6.7 1.3-2.6 1.9-5.3 1.9-8.1v-0.8c1.3-0.9 2.3-2 3.1-3.2-1.1 0.5-2.3 0.8-3.5 1z"></path>
+  </g>
+</svg>
+  <span class="st-label">Tweet</span>
+</div><div class="st-btn" data-network="facebook" style="display: inline-block;">
+  <svg fill="#fff" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40">
+  <g>
+    <path d="m21.7 16.7h5v5h-5v11.6h-5v-11.6h-5v-5h5v-2.1c0-2 0.6-4.5 1.8-5.9 1.3-1.3 2.8-2 4.7-2h3.5v5h-3.5c-0.9 0-1.5 0.6-1.5 1.5v3.5z"></path>
+  </g>
+</svg>
+  <span class="st-label">Share</span>
+</div><div class="st-btn" data-network="googleplus" style="display: inline-block;">
+  <svg fill="#fff" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40">
+  <g>
+    <path d="m25.2 20.3q0 3.6-1.6 6.5t-4.3 4.4-6.5 1.6q-2.6 0-5-1t-4.1-2.7-2.7-4.1-1-5 1-5 2.7-4.1 4.1-2.7 5-1q5 0 8.6 3.3l-3.5 3.4q-2-2-5.1-2-2.1 0-4 1.1t-2.8 2.9-1.1 4.1 1.1 4.1 2.8 2.9 4 1.1q1.5 0 2.7-0.4t2-1 1.4-1.4 0.8-1.4 0.4-1.3h-7.3v-4.4h12.1q0.3 1.1 0.3 2.1z m15.1-2.1v3.6h-3.6v3.7h-3.7v-3.7h-3.7v-3.6h3.7v-3.7h3.7v3.7h3.6z"></path>
+  </g>
+</svg>
+  <span class="st-label">Share</span>
+</div><div class="st-btn" data-network="linkedin" style="display: inline-block;">
+  <svg fill="#fff" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40">
+  <g>
+    <path d="m13.3 31.7h-5v-16.7h5v16.7z m18.4 0h-5v-8.9c0-2.4-0.9-3.5-2.5-3.5-1.3 0-2.1 0.6-2.5 1.9v10.5h-5s0-15 0-16.7h3.9l0.3 3.3h0.1c1-1.6 2.7-2.8 4.9-2.8 1.7 0 3.1 0.5 4.2 1.7 1 1.2 1.6 2.8 1.6 5.1v9.4z m-18.3-20.9c0 1.4-1.1 2.5-2.6 2.5s-2.5-1.1-2.5-2.5 1.1-2.5 2.5-2.5 2.6 1.2 2.6 2.5z"></path>
+  </g>
+</svg>
+  <span class="st-label">Share</span>
+</div><div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+  <svg fill="#fff" preserveAspectRatio="xMidYMid meet" height="1em" width="1em" viewBox="0 0 40 40">
+  <g>
+    <path d="m30 26.8c2.7 0 4.8 2.2 4.8 4.8s-2.1 5-4.8 5-4.8-2.3-4.8-5c0-0.3 0-0.7 0-1.1l-11.8-6.8c-0.9 0.8-2.1 1.3-3.4 1.3-2.7 0-5-2.3-5-5s2.3-5 5-5c1.3 0 2.5 0.5 3.4 1.3l11.8-6.8c-0.1-0.4-0.2-0.8-0.2-1.1 0-2.8 2.3-5 5-5s5 2.2 5 5-2.3 5-5 5c-1.3 0-2.5-0.6-3.4-1.4l-11.8 6.8c0.1 0.4 0.2 0.8 0.2 1.2s-0.1 0.8-0.2 1.2l11.9 6.8c0.9-0.7 2.1-1.2 3.3-1.2z"></path>
+  </g>
+</svg>
+  <span class="st-label">Share</span>
+</div></div>
+  </div>
+</div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-3533636310991304" data-ad-slot="5966819782" data-type="leaderboard" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" width="728" height="90" frameborder="0"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+          </div>
+        </div>
+        
+  <a id="comments"></a>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="disqus_thread"><iframe id="dsq-app541" name="dsq-app541" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 689px !important;" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/a_003.html" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div>
+    </div>
+  </div>
+
+  <script type="text/javascript" async="">
+    var disqus_shortname = 'blog-bitix';
+    var disqus_identifier = 
+'https:\/\/picodotdev.github.io\/blog-bitix\/2017\/11\/ordenar-alfabeticamente-cadenas-con-la-clase-collator-en-java\/';
+
+    var disqus_url = 
+'https:\/\/picodotdev.github.io\/blog-bitix\/2017\/11\/ordenar-alfabeticamente-cadenas-con-la-clase-collator-en-java\/';
+
+    var disqus_script = 'embed.js';
+    (function () {
+      var dsq = document.createElement('script'); 
+      dsq.type = 'text/javascript'; 
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + 
+disqus_script;
+      (document.getElementsByTagName('head')[0] || 
+document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+  </script>
+
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+  <div class="col-md-12 text-center">
+    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-3533636310991304" data-ad-slot="9559414587" data-type="large-skycraper" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:300px;height:600px;" width="300" height="600" frameborder="0"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-3533636310991304" data-ad-slot="2873752587" data-type="large-rectangle" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;width:336px;height:280px;" width="336" height="280" frameborder="0"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+  </div>
+</div>
+<div class="row text-center banner">
+  <div class="col-md-12">
+    <a href="https://paysuites.me/website/11383/" rel="nofollow" target="_blank"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/paysuites-banner-250-v3.jpg" alt="Publicidad con Paysuites"></a>
+  </div>
+</div>
+<div class="row text-center banner">
+  <div class="col-md-12">
+    <a href="https://picodotdev.github.io/blog-bitix/2015/12/yo-apoyo-al-software-libre-tu-tambien/"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/i-support-fs_red-bg-es.png" alt="Yo apoyo al software libre"></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-unstyled recents">
+      <li><span class="glyphicon glyphicon-hand-right"></span> <a href="https://picodotdev.github.io/blog-bitix/archive/">Más artículos recientes en el archivo</a></li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+      </div>
+    </div>
+    <footer>
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <p><strong>Blog Bitix</strong></p>
+      <p>Blog dedicado a la distribución GNU/Linux que uso 
+habitualmente, Arch Linux, a mis andanzas alrededor del software libre, 
+la programación y a otros temas relacionados con la tecnología y la 
+informática.</p>
+      <p>Publicando de uno a tres artículos a la semana desde el año 2010.</p>
+    </div>
+    <div class="col-sm-12 col-md-4 text-center menu">
+      <ul class="list-unstyled">
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/tags/java/">Java</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/tags/gnu-linux/">GNU/Linux</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/tags/javascript/">JavaScript</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/tags/tapestry/">Tapestry</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/archive/">Archivo y hemeroteca</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/pages/links/">Enlaces</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/pages/advertising/">Publicidad</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/pages/donate/">Donaciones</a></li>
+        
+          <li><a href="https://picodotdev.github.io/blog-bitix/pages/about/">Acerca de...</a></li>
+        
+      </ul>
+    </div>
+    <div class="col-sm-12 col-md-4 text-center links">
+      
+        <a href="https://picodotdev.github.io/blog-bitix/index.xml" title="¡Suscríbete a Blog Bitix!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/rss.png" class="icon"></a>
+      
+      
+        <a href="https://twitter.com/picodotdev/" title="¡Sígueme en twitter!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/twitter.svg" class="icon"></a>
+      
+      
+        <a href="https://plus.google.com/114317443908384387611/" title="¡Sigue a Blog Bitix en Google+!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/google-plus.svg" class="icon"></a>
+      
+      
+        <a href="https://github.com/picodotdev/blog-ejemplos/" title="¡Obtén el código fuente de los ejemplos!"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/github.svg" class="icon"></a>
+      
+      
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      Copyleft <span class="copyleft">©</span> 2017 - <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="nofollow"><img alt="Licencia de Creative Commons" title="Licencia de Creative Commons" style="border-width:0" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/80x15.png" class="licencia"></a><br>
+      <a href="https://twitter.com/blogstackinfo" rel="nofollow"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/blog-stack.png" alt="Blog Stack" title="Blog Stack"></a>
+      <a href="https://www.planetacodigo.com/" rel="nofollow"><img src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/planeta-codigo.png" alt="Planeta código" title="Planeta código"></a>
+      <br>
+      <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a href="https://picodotdev.github.io/blog-bitix/" rel="nofollow">Blog Bitix</a></span> by <a xmlns:cc="https://creativecommons.org/ns#" href="https://picodotdev.github.io/blog-bitix/" property="cc:attributionName" rel="cc:attributionURL">pico.dev</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional License</a>.
+      <br>
+      <span class="credit">Powered by <a href="https://gohugo.io/" rel="nofollow" title="A fast and modern static website engine">Hugo</a> and <a href="https://pages.github.com/" title="Websites for you and your projects">GitHub Pages</a>.</span>
+      <span class="credit">Background patterns from <a href="https://www.toptal.com/designers/subtlepatterns" rel="nofollow">Subtle Patterns</a>.</span>
+    </div>
+  </div>
+</footer>
+
+  </div><iframe style="display: none;"></iframe>
+  
+<div class="blueimp-gallery-container">
+  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
+    
+    <div class="slides"></div>
+    
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    
+    <div class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" aria-hidden="true">×</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body next"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left prev">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+              Anterior
+            </button>
+            <button type="button" class="btn btn-primary next">
+              Siguiente
+              <i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+<script type="text/javascript">
+    window.cookieconsent_options = {
+        "message": "Esta bitácora te informa de la obviedad de que 
+utiliza «cookies», propias y de servicios como Google Analytics y Google
+ AdSense entre otros.",
+        "dismiss": "Aceptar",
+        "learnMore": "Más información",
+        "link": null,
+        "theme": "dark-bottom"
+    };
+</script>
+<script type="text/javascript" src="Ordenar%20alfab%C3%A9ticamente%20cadenas%20con%20la%20clase%20Collator%20en%20Java_files/cookieconsent.js" async=""></script>
+
+
+<ins class="adsbygoogle" style="display: none; width: auto; height: auto;" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_4_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;width:0px;height:0px;" width="0" height="0" frameborder="0"></iframe></ins></ins></ins></body></html>
