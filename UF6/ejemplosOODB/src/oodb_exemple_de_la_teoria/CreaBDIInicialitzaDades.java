@@ -33,7 +33,8 @@ public class CreaBDIInicialitzaDades {
             clients[2].addComanda(new Encarrec("Impressora",1));
             clients[2].addComanda(new Encarrec("Toner Impressora",4));
             clients[2].addComanda(new Encarrec("Paquest A4", 20));
-            
+
+
             for(int i = 0; i < clients.length; i++) {
                 db.store(clients[i]);   //S'emmagatzema clients[i] i automàticament totes les seves referències (els encarrecs associats).
             }

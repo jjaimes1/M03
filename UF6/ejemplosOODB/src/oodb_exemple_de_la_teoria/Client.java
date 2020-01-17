@@ -57,8 +57,22 @@ public class Client {
     public List<Encarrec> getComandes() {
         return liComandes;
     }
-    
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(nom, client.nom) &&
+                Objects.equals(aElectronica, client.aElectronica) &&
+                Objects.equals(telefon, client.telefon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, aElectronica, telefon);
+    }
+
     @Override
     public String toString() {
         String res = nom + " : " + aPostal + " : (" + aElectronica + ", " + telefon + ")\n";
